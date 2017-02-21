@@ -1,0 +1,192 @@
+html {
+  min-height: 100%;
+}
+
+/* Hintergrund Settings*/
+body {
+    font-family: 'Roboto Slab', Helvetica, serif; /* Font für alles */
+    background: #F1F2B5; /* Fallback für alte Browser */
+    background: -webkit-linear-gradient(to top, #F1F2B5 , #135058); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #F1F2B5 , #135058); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/*Hält die Boxen auf gleiche Breite*/
+* {
+  box-sizing: border-box;
+}
+
+/********* FONTS für die großen **********/
+/*Eingabe-Placeholder und Listen-Name*/
+h2, #item-title {  
+    font: 34px 'Nunito', 'Roboto Slab', 'Lato', sans-serif, monospace;
+    color: #000;
+    margin: 10px 0 10px;
+}
+/*Schriften in dem Pop Up Fenster*/
+h3 {
+    font: 24px 'Roboto Slab', 'Lato', 'Helvetica',sans-serif, monospace;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #fff;
+    background-color: crimson;
+    }
+p {
+    padding: 0 25px 15px 25px;
+    font: 16px 'Roboto Slab', 'Lato', 'Helvetica',sans-serif, monospace;
+   color: white;
+    }
+
+/********** DIE PROBEAUFGABE - To Do Liste ***********/
+.wrapper {
+  width: 600px;
+  margin: 250px auto 0;
+}
+
+/*Die Liste in der alle Missionen eingefügt werden*/
+.list {
+  float: left;
+  width: 38%;
+  position: relative;
+  background: #fff;
+  border-radius: 3px;
+  text-align: center;
+}
+
+/*Gibt den Missionen eine Zahl zur Auflistung vor deren Position*/
+#item-list{
+    counter-reset: missionenzaehler;
+}
+#item-list li:before{
+    content:  counter(missionenzaehler) ". " "";
+	counter-increment: missionenzaehler;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+ul li {
+  position: relative;
+  padding: 5px 25px;
+  border-bottom: 1px solid #000;
+  cursor: default;
+  text-align: left;
+  color: #000;
+  font: 12px 'Roboto Slab', 'Lato', sans-serif, monospace;
+}
+ul li:first-child {
+  border-top: 1px solid #000;
+}
+ul li:hover {
+  background: #f3f3f3;
+  color: #000;
+}
+
+/*Setzt den Haken in der To_Do-Liste, wenn die Mission completed wurde*/
+.complete {
+  color: #000;
+  text-align: left;
+}
+.complete:after {
+  content: "\2713";
+  position: absolute;
+  top: 3.5px;
+  left: 210px;
+}
+
+/*Basics für das Edit-Formular*/
+.edit-item {
+  width: 60%;
+  float: right;
+  background: #fff;
+  border-radius: 3px;
+}
+.edit-item .button-row {
+  text-align: center;
+}
+
+/*Das Eingabefeld*/
+#item-title {
+  font-family: 'Roboto Slab', 'Lato', sans-serif, monospace;
+  margin-top: 12.5px;
+  color: #000;
+  width: 100%;
+  height: 40px;
+  padding: 0 25px;
+  border: none;
+}
+#item-title:focus {
+  outline: none;
+}
+#item-title.old-item-title {
+  color: #000;
+}
+#item-title.old-item-title:focus {
+  background: #fff;
+  font-weight: 400;
+  color: #000;
+  outline: none;
+}
+
+/*Das Feld für die Beschreibung der Mission*/
+textarea {
+  position: relative;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  width: 100%;
+  padding: 0 28px;
+  font-family: 'Roboto Slab', 'Lato', sans-serif, monospace;
+}
+textarea:focus {
+  outline: none;
+}
+textarea.giant-check {
+  background-image: url(/check-mark2.png);
+  background-size: 25%;
+  background-repeat: no-repeat;
+  background-position:50% 50%;
+}
+
+/*Alle Buttons unter dem Textfeld*/
+button {
+  margin: 5px 0 5px 0;
+  height: 30px;
+  border-radius: 4px;
+  font: 12px 'Roboto Slab', 'Lato', sans-serif, monospace;
+  color: #000;
+  border: 0;
+  background-color: #ED5454;
+  outline: none;
+}
+button:last-child {
+  margin-right: 0;
+}
+
+/*Die Zwei Auswahl-Buttons*/
+.list .button-row {
+  margin-bottom: 5px;
+  text-align: center;
+}
+.hidden-information {
+  display: none;
+}
+
+/*************** JavaScript Hinweis ***************/
+.pop-up {
+    position: relative;
+    width: 600px;
+    text-decoration: none;
+    margin-top: 16%;
+}
+.box {
+    border-radius: 6px;
+    background-color: black;
+    text-align: center;
+    position: relative;
+    -webkit-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.1);
+}

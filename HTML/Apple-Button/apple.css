@@ -1,0 +1,90 @@
+/*Erfüllung des ganzen Displays*/
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+
+
+/*Genau mittig im Bild*/
+html, body {
+  height: 100%;
+}
+
+
+
+/*Position und Rahmen des Switchers*/
+.button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 40px;
+  border-radius: 100px;
+  background-color: #ddd;
+  margin: -20px -40px;
+}
+
+
+
+/*Das Interaktive*/
+.check {
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 6;
+}
+
+
+
+/*Bei Klick Punkt bewegt - ohne Farbe*/
+  .check:checked ~ .farbe {
+    box-shadow: inset /*Inset sagt, wo die Farbe aufgezeigt werden soll_Beispiel:Versuch es mal ohne*/ 4px/*Wie schließt die Farbe auf der rechten Seite des Feldes*/ 0/*Von wo kommt die grüne Farbe ins Feld*/ 10px/*Fade*/ 20px/*Bereich der Eingeschlossen wird*/ #4bd863;
+  }
+
+
+
+/*Bei Klick Farbe wechseln - ohne Punkt*/
+  .check:checked ~ .switch {
+    right: 2px;
+    left: 22px;
+    transition: .35s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+    transition-property: left, right;
+    transition-delay: .05s, 0s;
+  }
+
+
+
+/* Mit dem Punkt die Farbe kommen lassen*/
+.switch {
+  position: absolute;
+  left: 2px;              /*Position des Switchers im Feld*/
+  top: 2px;               /*Position des Switchers im Feld*/
+  bottom: 2px;            /*Position des Switchers im Feld*/
+  right: 22px;            /*Breite des Switchers*/
+  background-color: #fff; /*Farbe vom Switcher*/
+  border-radius: 36px;    /*Runder Switcher*/
+  z-index: 1;             /*Direkte Reaktion*/
+  transition: .35s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+}
+
+
+
+/*Der Farbwechsel*/
+.farbe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: .55s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.05);
+  border-radius: 40px;
+}

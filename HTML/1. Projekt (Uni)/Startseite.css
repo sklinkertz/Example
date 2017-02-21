@@ -1,0 +1,13 @@
+/*Grenzt alles ein wenig ein*/
+html {
+    background: url(hintergrundbild.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+.logo {
+    position: fixed;
+    height: 760px;                                      /*Größe des Logos - 760 sieht auch cool aus*/
+    top: 150px;                                            /*Position im Web*/
+    left: 300px;
+}

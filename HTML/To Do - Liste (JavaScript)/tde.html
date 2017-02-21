@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en" lang="de">
+
+<head>    
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- GOOGLE FONT API -->
+    <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'/>
+    <!-- STYLE LINKS (Favicon und CSS.file) -->
+    <link rel="shortcut icon" href="/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <!-- WAS UND VON WEM -->
+    <meta name="author" content="Simon Klinkertz">
+    <title>To Do Liste</title>
+
+</head>
+    
+<body>
+
+      
+<!--To Do Listen-Aufgabe-->
+<div class="wrapper" >
+
+<!--JavaScript PopUp Fenster-->
+<noscript>
+<div class="pop-up">
+  <div class="box">
+    <h3>MISSION JavaScript</h3>
+    <p><a href="http://www.enable-javascript.com/de/" style=" color: #fff; text-decoration: none ;">Zur Nutzung dieser To Do Liste darf JavaScript nicht blockiert werden.</a></p>
+  </div>
+</div>    
+</noscript>
+    
+    <!--Die eigentliche Liste-->
+    <div class="list">
+        <h2>To Do</h2>
+        <ul id="item-list"></ul>
+        <div class="button-row">
+            <button id="btn-clear-list">LISTE LÖSCHEN</button>
+            <button id="btn-new-item">NEUE MISSION</button>
+        </div>
+    </div>
+    <div class="edit-item" id="list-form">
+        <input id="item-title" type="text" placeholder="Neue Mission" />
+        <textarea id="item-description" placeholder="Was machst du in deiner Mission?" rows="7"></textarea>
+        <div class="button-row">
+            <input id="hidden-boolean" class="hidden-information" type="checkbox">
+            <div id="hidden-id-holder" class="hidden-information"></div>
+            <button id="btn-completed">CHECK</button>
+            <button id="btn-delete-item">LÖSCHEN</button>
+            <button id="btn-save-item">SPEICHERN</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+	// 'Abspeichern' in der Liste
+	function giveLisClicks(){
+		var list = document.getElementsByTagName("li");
+		for (i = 0; i < list.length; i++) {
+			list[i].onclick = function(){
+				printItemToForm(this.id);
+			}
+		}
+	}
+
+	// Gibt die aktuelle Liste aus, das was in dem localStorage ist
+	function getList() {
+		var data = JSON.parse(localStorage.getItem("allTheData"));
+		if (data == null) {
+	        //alert("Es ist keine Mission bis lang gespeichert.");
+			data = [];
+		}
+		return data;
+	}
+
+	function getListItem(idNumber){
+		var data = getList();
+		for (i = 0; i < data.length; i++){
+			if (data[i].id == idNumber) {
+				return data[i];
+			}
+		}
+		alert("Tut mir Leid, aber diese Mission konnte nicht gefunden werden.");
+	}
+
+	// Löscht die Mission unter ein paar besonderen Bedienungen
+	function deleteItem(itemId) {
+		// Löschen einer Mission, die bis lang nicht gespeichert wurde bis jetzt
+		if (itemId != "") {
+			// Removes vom storage
+			var data = getList();
+				for (i = 0; i < data.length; i++){
+					if (data[i].id == itemId) {
+						data.splice(i, 1);
+					}
+				}
+			
+			localStorage.setItem("allTheData",JSON.stringify(data)); //Überschreibt das Element mit dem key und dem value
+
+			//Removes von DOM and säubert Form
+			document.getElementById('item-list').removeChild(document.getElementById(itemId));
+			clearForm();
+		}
+		else {
+			alert("Diese Mission kann noch nicht gelöscht werden, denn sie hat noch nicht statt gefunden.");
+		}
+	}
+
+	// Nimmt sich die ID von der Mission und gibt sie in Form aus
+	function printItemToForm(itemId){
+		var listItem = getListItem(itemId);
+		var title = document.getElementById('item-title');
+		title.value = listItem.title;
+		title.className = "old-item-title";
+		document.getElementById('item-description').value = listItem.description;
+		if (listItem.completed){
+			document.getElementById('item-description').className = "giant-check";
+		}
+		else {
+			document.getElementById('item-description').className = "";
+		}
+		document.getElementById('hidden-boolean').checked = listItem.completed;
+		document.getElementById('hidden-id-holder').innerHTML = itemId;
+	}
+
+	// Setzt die Eingaben wieder auf null und löscht die Mission wieder aus der Liste
+	function clearForm(){
+		var title = document.getElementById('item-title');
+		title.value = null;
+		title.className = "";
+		document.getElementById('item-description').value = null;
+		document.getElementById('hidden-boolean').checked = false;
+		document.getElementById('hidden-id-holder').innerHTML = "";
+		document.getElementById('item-description').className = "";
+		document.getElementById("item-title").focus();
+	}
+
+	// Packt die Eingabe in die Liste
+	function printNewItemToList(listItem) {
+		var domLi = document.createElement("li");
+		domLi.appendChild(document.createTextNode(listItem.title));
+		domLi.setAttribute("id", listItem.id);
+		if (listItem.completed) {
+			domLi.className = "complete";
+		}
+		document.getElementById('item-list').appendChild(domLi);
+	}
+
+	// Überschreibt die neuen Eingaben
+	function rewriteItemInList(listItem) {
+		var domLi = document.getElementById(listItem.id);
+		domLi.innerHTML = listItem.title;
+		if (listItem.completed) {
+			domLi.className = "complete";
+		}
+		else {
+			domLi.className = "";
+		}
+	}
+
+	// Alle Eingaben werden durch diese Hilfsfunktion dargestellt
+	function printList(){
+		data = getList();
+		for (i = 0; i < data.length; i++) {
+			printNewItemToList(data[i]);
+		}
+	}
+
+	// Die neue Mission muss, um 'abgespeichert' werden zu können mindestens einen Titel oder eine Beschreibung haben
+	function validation(title, description) {
+		if (title == "" && description == ""){
+			alert("Willst du eine Mission speicher? Dann gib ihr einen Namen oder wenigstens eine Beschreibung");
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	// Die folgenden Funktionen werden von event-triggers aufgerufen
+	function markCompleted(title, description, completed, id) {
+		if (completed) {
+			document.getElementById('hidden-boolean').checked = false;
+			completed = false;
+			document.getElementById('item-description').className = "";
+		}
+		else {
+			document.getElementById('hidden-boolean').checked = true;
+			completed = true;
+			document.getElementById('item-description').className = "giant-check";
+		}
+		// Für alte Missionen: validieren und Updaten
+		// Für neue Missionen: Müssen mit dem 'SPEICHERN'-Button abgespeichert werden
+		if (validation(title, description) && id!="") {
+			if (title == "") {
+				title = "{unnamed task}";
+			}
+			updateItem(title, description, completed, id);
+		}
+	}
+
+	// Kleine Hilfsfunktion für die Abspeicherung/Update
+	function saveItem(title, description, completed, id) {
+		if (validation(title, description)) {
+			if (title == "") {
+				title = "{unnamed task}";
+			}
+			updateItem(title, description, completed, id);
+			clearForm();
+		}
+	}
+
+	// Nimmt die Formulareingaben und speichert sie zum Storage
+	// Außerdem updatet die DOM
+	function updateItem(title, description, completed, id) {
+		var tempData = {title:title, description:description, completed:completed, id:id};
+		var data = getList();
+		var found = false;
+	// Neue Missionen werden ID Nummern gegeben und die DOM-Liste somit geupdatet
+		if (id == "") {
+			tempData.id = Date.now();
+			data.push(tempData);
+			printNewItemToList(tempData);
+			giveLisClicks();
+		}
+	// Alte Missionen werden gefunden und werde im Storage und in der DOM geupdatet
+		else {
+			for (i = 0; i < data.length; i++) {
+				if (data[i].id == tempData.id) {
+					data[i] = tempData;
+					found = true;
+				}
+			}
+			if (!found) {
+				alert("Kein Update zu dieser Mission möglich, weil das Item in der Database nicht gefunden werden konnte.");
+			}		
+			else {
+				rewriteItemInList(tempData);
+			}
+		}
+
+		localStorage.setItem("allTheData", JSON.stringify(data));
+	}
+
+// Alles was mit dem Fenster zu tun hat ~~~
+window.onload = function(){
+
+	printList();
+
+	//"ALLES LÖSCHEN"-Button
+	// Gibt eine kleine Warnung aus und löscht dann alles zu den Missionen
+	document.getElementById('btn-clear-list').addEventListener('click', function(){
+		var sure = confirm("Alle Missionen wirst du löschen!");
+		if (sure){
+			localStorage.removeItem('allTheData');
+			var list = document.getElementById('item-list');
+			while (list.hasChildNodes()) {
+			list.removeChild(list.firstChild);
+			}
+		}
+	});
+
+	document.getElementById('btn-new-item').addEventListener('click', function(){
+		clearForm();
+		// Auskommentiert um die Liste als existierenden Speicher zu sehen
+		// alert(JSON.stringify(getList()));
+	});
+
+	// Automatisch angewählter Form-Text
+	document.getElementById('item-title').addEventListener('click',function(){
+		this.select();
+	});
+	document.getElementById('item-description').addEventListener('click',function(){
+		this.select();
+	});
+
+	//FERTIG Button
+	document.getElementById('btn-completed').addEventListener('click', function(){
+		markCompleted(
+			document.getElementById('item-title').value, 
+			document.getElementById('item-description').value, 
+			document.getElementById('hidden-boolean').checked,
+			document.getElementById('hidden-id-holder').innerHTML
+		);
+	});
+
+	//LÖSCHEN Button
+	document.getElementById('btn-delete-item').addEventListener('click',function(){
+		deleteItem(document.getElementById('hidden-id-holder').innerHTML);
+	});
+
+	//SPEICHERN Button
+	document.getElementById('btn-save-item').addEventListener('click',function(){
+		saveItem(
+			document.getElementById('item-title').value, 
+			document.getElementById('item-description').value, 
+			document.getElementById('hidden-boolean').checked,
+			document.getElementById('hidden-id-holder').innerHTML
+		);
+	});
+
+	document.getElementById('item-title').addEventListener('keydown', function(e) {
+		var key = e.which || e.keyCode;
+		if (key == 13) {
+			saveItem (
+				document.getElementById('item-title').value, 
+				document.getElementById('item-description').value, 
+				document.getElementById('hidden-boolean').checked,
+				document.getElementById('hidden-id-holder').innerHTML
+			);
+		}
+	});
+
+	document.getElementById('item-description').addEventListener('keydown', function(e) {
+		var key = e.which || e.keyCode;
+		if (key == 13) {
+			saveItem (
+				document.getElementById('item-title').value, 
+				document.getElementById('item-description').value, 
+				document.getElementById('hidden-boolean').checked,
+				document.getElementById('hidden-id-holder').innerHTML
+			);
+		}
+	});
+
+	giveLisClicks();
+
+	document.getElementById("item-title").focus();
+	document.getElementById("item-title").blur();
+}
+
+</script>
+</body>
+</html>

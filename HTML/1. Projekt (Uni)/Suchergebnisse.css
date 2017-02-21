@@ -1,0 +1,193 @@
+/*Grenzt alles ein wenig ein*/
+html {
+    background: url(hintergrundbild.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+
+
+
+
+.logo {
+position: fixed;
+height: 130px;                                      /*Größe des Logos*/
+top: 10px;                                            /*Position im Web*/
+left: 100px;
+}
+
+
+
+
+/*Das ist der Footer*/
+#seite {
+    width: 1185px;
+	height:50px;
+    bottom:0;
+	left:270px;
+    position: absolute;
+    color: white;                                   /*Farbe der Schrift*/
+    opacity: 0.7;
+}
+ 
+#fussbereich {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", "sans-serif";
+    border-radius: 10px;                            /*Abrundungen der Linie*/
+    box-shadow: 0 2px 9px 3px rgba(0, 0, 0, 0.055); /*Schatten der Linie*/
+    width: auto;                                    /*Breite der Linie*/
+    height: 0.3em;                                  /*Dicke der Linie*/
+    background-color: white;                        /*Farbe der Linie*/
+}
+
+.legal { 
+  float: left;
+}
+
+.credit {
+  float: right;
+}
+
+.legal a {
+  text-decoration: none;
+  color: white;
+  opacity: 0.4;
+}
+
+.credit a {
+  text-decoration: none;
+  color: white;
+  opacity: 0.4;
+}
+
+
+
+
+
+
+.datagrid table { 
+    text-align: center; 
+    width: auto;   /*Breite der Tabelle*/
+    font: normal 14px "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", "sans-serif";
+    color: #000000;
+    border: 1px solid #ffffff;
+}
+
+
+.datagrid {
+    position: fixed;
+    border-radius: 10px;
+    left: 270px;                                   /*Position im Web*/
+    top: 210px;
+    height: 650px;
+    width: 1185px;
+    overflow:scroll;
+}
+
+/*Der große weiße Hintergrund*/
+.datagrid table td, .datagrid table th { 
+    background: #ffffff;
+    padding: 8px/*Höhe der Zellen*/ 60px; /*Breite der Info-Zellen*/
+}
+
+.datagrid table tbody td { 
+    color: #000000; 
+    font-size: 14px;
+    font-weight: normal;
+    padding: 8px/*Höhe der Zellen*/ 70px; /*Breite der Info-Zellen*/
+}
+
+
+.datagrid table tbody tr td table tr td {
+    color: black;
+    height: 14px;
+}
+
+
+.infobild {
+    width:220px; 
+    height:150px;
+    padding:5px;
+    background-color:#FCFADD;
+}
+
+#bigscroller {
+    left: 270px;                                   /*Position im Web*/
+    top: 210px;
+    }
+
+
+
+
+nav {
+    position: fixed;
+    top: 140px;                                         /*Abstand vom oberen Web-Rand*/
+    left: 270px;                                        /*Abstand vom linken Web-Rand*/
+    width: 1180px;                                      /*Breite von Navigationsbar*/
+    background-color: #fff;                           /*Farbe der Navigationsbar*/
+    border-radius: 10px;                              /*Abrundungen des Navigationsbar*/
+    border: 2px solid #dedede;                        /*Gesamtgröße des Schattens*/
+    box-shadow: 0 2px 9px 3px rgba(0, 0, 0, 0.055);   /*Schatten des Navigationsleiste*/
+    opacity: 0.9;                                     /*Transparenz von Unterkapitel*/
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+    font-weight: 400;                                   /*Wie dick soll die Schrift aussehen; Es sind Intervalle gesetzt*/
+}
+
+
+/*Formung und Aufblendungen*/
+     nav ul li {
+        display: inline-block;                        /*Setzt es zu dieser Reihe*/
+        -webkit-transition: all 0.10s;                 /*Zeit für das Aufleuchten der Menüpunkte*/
+     }
+      
+/*Setzt Menüpunkte mit Design in Reih und Glied*/
+        nav > ul > li > a {
+        color: #000;
+        display: block;
+        padding: 0 40px;                            /*Abstand zwischen den Menüpunkten*/
+        text-decoration: none;
+        }
+
+/*Das Aufleuchten des Menüpunktes bei MouseOver*/
+        nav > ul > li:hover {
+        background-color: #fff;
+        border-radius: 8px;             /*Die Kanten des Kapitels*/
+        }
+
+/*Farbgebung bei MouseOver*/
+        nav > ul > li:hover > a {
+        color: #000;
+        }
+
+
+/*Das Design des Unterkapitels*/      
+      nav > ul > li > div {
+      background-color: #fff;             /*Die Farbe des Unterkapitels*/
+      border-radius: 8px;                   /*Die Kanten des Unterkapitels*/
+      position: absolute;                    /*Lässt das Unterkapitel unabhängig darstellen*/ 
+      width: 165px; 	                     /*Breite des Kastens vom Unterkapitel*/
+	  visibility: hidden;                    /*Lässt es aufrufen bei MouseOver*/
+      }
+
+
+/*Das die Unterkapitel überhaupt gezeigt werden kšnnen*/
+            nav > ul > li:hover > div {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            }
+
+/* Das Design für die Unterkapitel*/
+            nav > ul > li > div ul > li > a {
+              color: #000;
+              display: block;
+              padding: 15px 10px;                    /*Die Position der Schrift im Unterkapitel*/
+              text-decoration: none;
+            }
+
+
+
+a {
+    text-decoration:none; 
+    color:black; 
+    font-weight:normal;
+}

@@ -1,0 +1,262 @@
+/*Grenzt alles ein wenig ein*/
+html {
+    background: url(hintergrundbild.png) no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+
+/*Der gute Home-Button*/
+.logo {
+position: fixed;
+height: 130px;                                      /*Größe des Logos*/
+top: 10px;                                            /*Position im Web*/
+left: 100px;
+}
+
+
+
+/*Der Datepicker und die Möglichkeit einzutippen*/
+ .datepicker {
+  position: fixed;
+  top: 500px;                                        /*Position im Web*/
+  left: 15px;
+  width: 235px;                                      /*Maße von dem Design*/
+  height: 24px;
+  border-radius: 10px;
+  opacity: 0.9;
+  text-align: center;
+  font-size: 15px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", "sans-serif";
+  background: #FFF url(Lupe_Icon.png) no-repeat 4px; 
+}
+
+
+
+/*Der gesamte Kalender*/
+table {
+    position: fixed;
+    top: 235px;                                           /*Abstand vom oberen Web-Rand*/
+    left: 15px;                                         /*Abstand vom linken Web-Rand*/
+    width: 235px;                                         /*Breite*/ 
+    height: 24px;
+    background-color: #fff;                             /*Hintergrundfarbe*/
+    border-radius: 8px;                                 /*Abrundungen des Navigationsbar*/
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+  }
+
+
+/*Eigenschaften für die Wochentagsangaben-Zeile*/
+th {
+    height: 2em;                                        /*Höhe der Felder*/
+    width:  0.7em;                                      /*Breite der Felder*/
+    font-size: 85%;                                     /*Größe der Angaben*/
+    background-color: #fff;                             /*Die Farbe*/
+    text-align: center;
+    opacity: 0.8;
+}
+
+td {
+    height: 1.85em;                                        /*Höhe der Felder*/
+    width:  0.3em;                                      /*Breite der Felder*/
+    padding: 0px;                                       /*Dehnung des Kalenders*/
+    text-align: center;                                 /*Wo sollen die Ziffern stehen, in der Mitte vom Feld oder unten...*/
+    border: 0px solid #aaa;                             /*Rahmen und Farbe zwischen den einzelnen Zahlen*/
+    background-color: #fff;                             /*Farbangabe fŸr die Felder "off"*/
+}
+/*Kalenderüberschirft-Eigenschaften*/
+caption {
+text-shadow:black 0.2px 0.2px 0.7px; 
+color: white; 
+opacity: 0.9; 
+font-size: 28px;
+font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+.weekend {
+        color: #990000;
+        opacity: 0.8;
+        }
+.weekday {
+        color: #000000;
+        opacity: 0.7;
+}
+/*Eigenschaften für die Pfeil-Buttons*/
+.pfeil_links { 
+    text-decoration: none;
+    position: relative;
+    height: 20px;                                      /*Größe des Logos*/
+}
+.pfeil_rechts {
+    text-decoration: none;
+    position: relative;
+    height: 20px;                                      /*Größe des Logos*/
+}
+.day a{
+    text-decoration: none;
+    color: #000000;
+    opacity: 1;
+}
+.off a{
+    text-decoration: none;
+    color: #aaa;
+    opacity: 0.7;
+}
+/*Ende des CSS-Parts des Kalender*/
+
+
+
+
+
+
+
+
+/*Das ist der Footer*/
+#seite {
+    width: 1185px;
+	height:50px;
+    bottom:0;
+	left:270px;
+    position: absolute;
+    color: white;                                   /*Farbe der Schrift*/
+    opacity: 0.7;
+}
+#fussbereich {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", "sans-serif";
+    border-radius: 10px;                            /*Abrundungen der Linie*/
+    box-shadow: 0 2px 9px 3px rgba(0, 0, 0, 0.055); /*Schatten der Linie*/
+    width: auto;                                    /*Breite der Linie*/
+    height: 0.3em;                                  /*Dicke der Linie*/
+    background-color: white;                        /*Farbe der Linie*/
+}
+.legal { 
+  float: left;
+}
+.credit {
+  float: right;
+}
+.legal a {
+  text-decoration: none;
+  color: white;
+  opacity: 0.4;
+}
+.credit a {
+  text-decoration: none;
+  color: white;
+  opacity: 0.4;
+}
+/*Ende des Footers*/
+
+
+
+
+
+nav {
+    position: fixed;
+    top: 140px;                                         /*Abstand vom oberen Web-Rand*/
+    left: 270px;                                        /*Abstand vom linken Web-Rand*/
+    width: 1180px;                                      /*Breite von Navigationsbar*/
+    background-color: #fff;                           /*Farbe der Navigationsbar*/
+    border-radius: 10px;                              /*Abrundungen des Navigationsbar*/
+    border: 2px solid #dedede;                        /*Gesamtgröße des Schattens*/
+    box-shadow: 0 2px 9px 3px rgba(0, 0, 0, 0.055);   /*Schatten des Navigationsleiste*/
+    opacity: 0.9;                                     /*Transparenz von Unterkapitel*/
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", "Lucida Grande", sans-serif;
+    font-weight: 400;                                   /*Wie dick soll die Schrift aussehen; Es sind Intervalle gesetzt*/
+}
+
+/*Formung und Aufblendungen*/
+     nav ul li {
+        display: inline-block;                             /*Setzt es zu dieser Reihe*/
+        -webkit-transition: all 0.10s;                     /*Zeit für das Aufleuchten der Menüpunkte*/
+     }      
+/*Setzt Menüpunkte mit Design in Reih und Glied*/
+        nav > ul > li > a {
+        color: #000;
+        display: block;
+        padding: 0 40px;                                 /*Abstand zwischen den Menüpunkten*/
+        text-decoration: none;
+        }
+/*Das Aufleuchten des Menüpunktes bei MouseOver*/
+        nav > ul > li:hover {
+        background-color: #fff;
+        border-radius: 8px;                              /*Die Kanten des Kapitels*/
+        }
+/*Farbgebung bei MouseOver*/
+        nav > ul > li:hover > a {
+        color: #000;
+        }
+/*Das Design des Unterkapitels*/      
+      nav > ul > li > div {
+      background-color: #fff;                               /*Die Farbe des Unterkapitels*/
+      border-radius: 8px;                                 /*Die Kanten des Unterkapitels*/
+      position: absolute;                                 /*Lässt das Unterkapitel unabhängig darstellen*/ 
+      width: 165px; 	                                  /*Breite des Kastens vom Unterkapitel*/
+	  visibility: hidden;                                 /*Lässt es aufrufen bei MouseOver*/
+      }
+/*Das die Unterkapitel überhaupt gezeigt werden kšnnen*/
+            nav > ul > li:hover > div {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            }
+/* Das Design für die Unterkapitel*/
+            nav > ul > li > div ul > li > a {
+              color: #000;
+              display: block;
+              padding: 15px 10px;                         /*Die Position der Schrift im Unterkapitel*/
+              text-decoration: none;
+            }
+
+
+
+.teamtabelle {
+    z-index: 7;
+    background: none;
+    border-radius: 10px;
+    position: fixed;
+    left: 290px;                                   /*Position im Web*/
+    top: 270px;
+    height: 220px;
+    width: 350px;
+    }
+
+
+
+.download {
+    position: fixed;
+    top: 51.5%;                                         /*Abstand vom oberen Web-Rand*/
+    left: 60%;                                    /*Abstand vom linken Web-Rand*/
+    width: 34%;                                      /*Breite von Navigationsbar*/
+    height: 40%;
+}
+
+
+/* Contentbox / aktives Feld */
+#veranstaltungen {
+    background: none;
+    position: fixed;
+    left: 270px;                                   /*Position im Web*/
+    top: 210px;
+    height: 650px;
+    width: 1185px;
+    border-radius: 10px;
+    opacity: 0.5;
+    background-color: #fff;                             /*Farbangabe für die Felder "off"*/
+    box-shadow: inset 22px 9px 50px 0px rgba(204, 204, 204, 0.93);
+    text-decoration: none;
+    color: #fff;
+}
+
+a {
+    text-decoration:none; 
+    color:black; 
+    font-weight:normal;
+}
+
+
+img.zoom {
+ transition: transform;
+}
+img.zoom:hover {
+ transform: scale(3.4, 3.4);
+}
